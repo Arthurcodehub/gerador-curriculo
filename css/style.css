@@ -1,0 +1,228 @@
+:root {
+  /* Cores */
+  --cor-fundo: #F8FAFC;
+  --cor-card: #FFFFFF;
+  --cor-texto-principal: #0F172A;
+  --cor-texto-secundario: #64748B;
+  --cor-destaque: #2563EB;
+  --cor-destaque-hover: #1D4ED8;
+  --cor-sucesso: #16A34A;
+  --cor-erro: #DC2626;
+  --cor-borda: #E2E8F0;
+
+  /* Tipografia */
+  --fonte-principal: 'Inter', -apple-system, sans-serif;
+
+  /* Espaçamento (escala consistente evita valores aleatórios) */
+  --espaco-xs: 0.5rem;
+  --espaco-sm: 1rem;
+  --espaco-md: 1.5rem;
+  --espaco-lg: 2rem;
+  --espaco-xl: 3rem;
+
+  /* Bordas e sombras */
+  --raio-borda: 10px;
+  --sombra-card: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --sombra-hover: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  /* Transições */
+  --transicao: 200ms ease;
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  font-size: 16px;
+}
+
+.header {
+  padding: var(--espaco-lg) var(--espaco-xl);
+  background: var(--cor-card);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em; /* títulos grandes ficam mais elegantes com letras levemente juntas */
+}
+
+.header p {
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* duas colunas de largura igual */
+  gap: var(--espaco-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--espaco-lg) var(--espaco-xl);
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+}
+
+fieldset {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: var(--espaco-md);
+  box-shadow: var(--sombra-card);
+  transition: box-shadow var(--transicao);
+}
+
+fieldset:hover {
+  box-shadow: var(--sombra-hover);
+}
+
+legend {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0 var(--espaco-xs);
+  color: var(--cor-texto-principal);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--espaco-sm);
+}
+
+.campo:last-child {
+  margin-bottom: 0;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cor-texto-secundario);
+}
+
+.campo input,
+.campo textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--cor-texto-principal);
+  background: var(--cor-fundo);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.campo textarea {
+  resize: vertical; /* usuário só pode redimensionar verticalmente */
+  min-height: 80px;
+}
+
+/* Estado de foco elegante — em vez do outline padrão feio do navegador */
+.campo input:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background: var(--cor-card);
+}
+
+/* Estado de erro (você vai usar isso via JS depois) */
+.campo input.erro {
+  border-color: var(--cor-erro);
+}
+
+.campo .mensagem-erro {
+  font-size: 0.8rem;
+  color: var(--cor-erro);
+}
+
+.btn-primario,
+.btn-secundario {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform 150ms ease, background-color var(--transicao), box-shadow var(--transicao);
+}
+
+.btn-primario {
+  background: var(--cor-destaque);
+  color: white;
+}
+
+.btn-primario:hover {
+  background: var(--cor-destaque-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-secundario {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-principal);
+}
+
+.btn-secundario:hover {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+/* Efeito de "clique" — leve encolhida, dá sensação tátil */
+.btn-primario:active,
+.btn-secundario:active {
+  transform: scale(0.97);
+}
+
+.acoes-form {
+  display: flex;
+  gap: var(--espaco-sm);
+  justify-content: flex-end;
+}
+
+.preview-section {
+  position: sticky;
+  top: var(--espaco-lg); /* acompanha o scroll — comum em ferramentas assim */
+  align-self: start;
+}
+
+.curriculo-preview {
+  background: white;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-hover);
+  padding: var(--espaco-xl);
+  min-height: 700px;
+  aspect-ratio: 210 / 297; /* proporção real de uma folha A4 */
+  overflow-y: auto;
+}
+
+.preview-vazio {
+  color: var(--cor-texto-secundario);
+  text-align: center;
+  margin-top: var(--espaco-xl);
+  font-size: 0.9rem;
+}
+
+.footer {
+  text-align: center;
+  padding: var(--espaco-lg);
+  color: var(--cor-texto-secundario);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .preview-section {
+    position: static;
+  }
+}
+
+/* Em telas pequenas, empilha em uma coluna só */
+@media (max-width: 900px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    padding: var(--espaco-md);
+  }
+}

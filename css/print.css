@@ -1,0 +1,25 @@
+@media print {
+  /* Esconde tudo que não é o currículo em si */
+  .header,
+  .form-section,
+  .footer,
+  .skip-link {
+    display: none;
+  }
+
+  .main-layout {
+    display: block;
+    padding: 0;
+  }
+
+  .curriculo-preview {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    aspect-ratio: unset;
+  }
+
+  body {
+    background: white;
+  }
+}
