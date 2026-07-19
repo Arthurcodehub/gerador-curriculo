@@ -213,6 +213,39 @@ legend {
   font-size: 0.85rem;
 }
 
+.item-dinamico {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: var(--espaco-sm);
+  margin-bottom: var(--espaco-sm);
+  background: var(--cor-fundo);
+}
+
+.item-dinamico-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--espaco-xs);
+}
+
+.item-dinamico-titulo {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.btn-remover {
+  font-size: 0.8rem;
+  color: var(--cor-erro);
+  transition: opacity var(--transicao);
+}
+
+.btn-remover:hover {
+  opacity: 0.7;
+}
+
 @media (max-width: 900px) {
   .preview-section {
     position: static;
