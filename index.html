@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Currículo</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header class="header">
+    <h1>Gerador de Currículo</h1>
+    <p>Preencha o formulário e veja seu currículo pronto em tempo real</p>
+  </header>
+
+  <main id="conteudo-principal" class="main-layout">
+
+    <!-- FORMULÁRIO -->
+    <section class="form-section" aria-labelledby="form-titulo">
+      <h2 id="form-titulo" class="visually-hidden">Formulário de dados</h2>
+
+      <form id="form-curriculo" novalidate>
+
+        <fieldset>
+          <legend>Dados Pessoais</legend>
+
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required aria-required="true">
+          </div>
+
+          <div class="campo">
+            <label for="cargo">Cargo desejado</label>
+            <input type="text" id="cargo" name="cargo">
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required aria-required="true">
+          </div>
+
+          <div class="campo">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone">
+          </div>
+
+          <div class="campo">
+            <label for="cidade">Cidade / Estado</label>
+            <input type="text" id="cidade" name="cidade">
+          </div>
+
+          <div class="campo">
+            <label for="resumo">Resumo profissional</label>
+            <textarea id="resumo" name="resumo" rows="4"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Experiência Profissional</legend>
+          <div id="lista-experiencias" class="lista-dinamica">
+            <!-- itens de experiência adicionados via JS -->
+          </div>
+          <button type="button" id="btn-add-experiencia" class="btn-secundario">
+            + Adicionar experiência
+          </button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Formação Acadêmica</legend>
+          <div id="lista-formacao" class="lista-dinamica">
+            <!-- itens de formação adicionados via JS -->
+          </div>
+          <button type="button" id="btn-add-formacao" class="btn-secundario">
+            + Adicionar formação
+          </button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Habilidades</legend>
+          <div class="campo">
+            <label for="habilidades">Habilidades (separadas por vírgula)</label>
+            <input type="text" id="habilidades" name="habilidades" placeholder="Ex: HTML, CSS, JavaScript">
+          </div>
+        </fieldset>
+
+        <div class="acoes-form">
+          <button type="button" id="btn-limpar" class="btn-secundario">Limpar dados</button>
+          <button type="button" id="btn-exportar-pdf" class="btn-primario">Exportar PDF</button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="preview-section" aria-labelledby="preview-titulo">
+      <h2 id="preview-titulo" class="visually-hidden">Pré-visualização do currículo</h2>
+
+      <div id="preview-curriculo" class="curriculo-preview" aria-live="polite">
+        <p class="preview-vazio">Seu currículo aparecerá aqui conforme você preenche o formulário.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Feito com HTML, CSS e JavaScript puro.</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
