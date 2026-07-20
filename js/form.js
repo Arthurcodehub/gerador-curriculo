@@ -182,6 +182,48 @@ form.addEventListener('click', (evento) => {
   }
 });
 
-// Adiciona um item de cada por padrão, pra não começar totalmente vazio
-adicionarExperiencia();
-adicionarFormacao();
+/**
+ * Preenche o formulário inteiro a partir de um objeto de dados salvo.
+ * É o "inverso" de coletarDadosFormulario().
+ */
+function preencherFormulario(dados) {
+  document.getElementById('nome').value = dados.nome || '';
+  document.getElementById('cargo').value = dados.cargo || '';
+  document.getElementById('email').value = dados.email || '';
+  document.getElementById('telefone').value = dados.telefone || '';
+  document.getElementById('cidade').value = dados.cidade || '';
+  document.getElementById('resumo').value = dados.resumo || '';
+  document.getElementById('habilidades').value = (dados.habilidades || []).join(', ');
+
+  // Limpa os itens dinâmicos padrão antes de recriar com os dados salvos
+  listaExperiencias.innerHTML = '';
+  listaFormacao.innerHTML = '';
+  contadorExperiencia = 0;
+  contadorFormacao = 0;
+
+  (dados.experiencias || []).forEach((exp) => {
+    contadorExperiencia++;
+    const item = criarItemExperiencia(contadorExperiencia);
+    listaExperiencias.appendChild(item);
+
+    // Preenche os campos desse item específico que acabamos de criar
+    item.querySelector('[data-campo="empresa"]').value = exp.empresa || '';
+    item.querySelector('[data-campo="cargo"]').value = exp.cargo || '';
+    item.querySelector('[data-campo="periodo"]').value = exp.periodo || '';
+    item.querySelector('[data-campo="descricao"]').value = exp.descricao || '';
+  });
+
+  (dados.formacao || []).forEach((f) => {
+    contadorFormacao++;
+    const item = criarItemFormacao(contadorFormacao);
+    listaFormacao.appendChild(item);
+
+    item.querySelector('[data-campo="instituicao"]').value = f.instituicao || '';
+    item.querySelector('[data-campo="curso"]').value = f.curso || '';
+    item.querySelector('[data-campo="periodo"]').value = f.periodo || '';
+  });
+
+  // Se não havia nenhuma experiência/formação salva, garante ao menos 1 item vazio
+  if ((dados.experiencias || []).length === 0) adicionarExperiencia();
+  if ((dados.formacao || []).length === 0) adicionarFormacao();
+}

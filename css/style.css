@@ -29,6 +29,10 @@
   --transicao: 200ms ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--fonte-principal);
   background-color: var(--cor-fundo);
