@@ -48,20 +48,18 @@ E acesse `http://localhost:8000` no navegador.
 
 ## Estrutura do projeto
 
-\`\`\`
 gerador-curriculo/
 ├── index.html
 ├── css/
 │   ├── reset.css      # normalização entre navegadores
-│   ├── style.css       # estilos principais e componentes
-│   └── print.css       # regras específicas para exportação em PDF
+│   ├── style.css      # estilos principais e componentes
+│   └── print.css      # regras específicas para exportação em PDF
 ├── js/
-│   ├── storage.js       # persistência de dados (localStorage)
-│   ├── form.js          # captura e validação do formulário
-│   ├── preview.js       # renderização do currículo em tempo real
-│   └── app.js            # orquestrador principal
+│   ├── storage.js     # persistência de dados (localStorage)
+│   ├── form.js        # captura e validação do formulário
+│   ├── preview.js     # renderização do currículo em tempo real
+│   └── app.js          # orquestrador principal
 └── README.md
-\`\`\`
 
 ## Decisões técnicas
 
