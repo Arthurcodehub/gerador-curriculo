@@ -227,3 +227,42 @@ function preencherFormulario(dados) {
   if ((dados.experiencias || []).length === 0) adicionarExperiencia();
   if ((dados.formacao || []).length === 0) adicionarFormacao();
 }
+
+/**
+ * Valida um campo obrigatório específico.
+ * Adiciona/remove a classe de erro e a mensagem, e usa aria-invalid
+ * pra leitores de tela saberem que o campo tem problema.
+ */
+function validarCampo(input) {
+  const valor = input.value.trim();
+  const campoContainer = input.closest('.campo');
+  const mensagemExistente = campoContainer.querySelector('.mensagem-erro');
+
+  const vazio = input.hasAttribute('required') && valor === '';
+  const emailInvalido = input.type === 'email' && valor !== '' && !valor.includes('@');
+
+  if (vazio || emailInvalido) {
+    input.classList.add('erro');
+    input.setAttribute('aria-invalid', 'true');
+
+    if (!mensagemExistente) {
+      const mensagem = document.createElement('span');
+      mensagem.className = 'mensagem-erro';
+      mensagem.setAttribute('role', 'alert'); // leitor de tela anuncia imediatamente
+      mensagem.textContent = vazio ? 'Este campo é obrigatório.' : 'Digite um e-mail válido.';
+      campoContainer.appendChild(mensagem);
+    }
+    return false;
+  }
+
+  input.classList.remove('erro');
+  input.removeAttribute('aria-invalid');
+  if (mensagemExistente) mensagemExistente.remove();
+  return true;
+}
+
+// Valida ao sair do campo (blur), não a cada tecla — menos intrusivo
+const camposObrigatorios = form.querySelectorAll('[required]');
+camposObrigatorios.forEach((input) => {
+  input.addEventListener('blur', () => validarCampo(input));
+});

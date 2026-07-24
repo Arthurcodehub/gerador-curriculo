@@ -40,5 +40,13 @@ btnLimpar.addEventListener('click', () => {
 const btnExportarPDF = document.getElementById('btn-exportar-pdf');
 
 btnExportarPDF.addEventListener('click', () => {
+  const camposValidos = Array.from(camposObrigatorios).every((input) => validarCampo(input));
+
+  if (!camposValidos) {
+    alert('Preencha os campos obrigatórios antes de exportar.');
+    camposObrigatorios[0].focus();
+    return;
+  }
+
   window.print();
 });
