@@ -35,3 +35,10 @@ btnLimpar.addEventListener('click', () => {
   adicionarFormacao();
   disparaAtualizacao();
 });
+
+// Botão "Exportar PDF"
+const btnExportarPDF = document.getElementById('btn-exportar-pdf');
+
+btnExportarPDF.addEventListener('click', () => {
+  window.print();
+});

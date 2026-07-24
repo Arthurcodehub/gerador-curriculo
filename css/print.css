@@ -1,5 +1,4 @@
 @media print {
-  /* Esconde tudo que não é o currículo em si */
   .header,
   .form-section,
   .footer,
@@ -17,9 +16,22 @@
     border-radius: 0;
     padding: 0;
     aspect-ratio: unset;
+    overflow: visible; /* garante que conteúdo longo não corte na impressão */
   }
 
   body {
     background: white;
+  }
+
+  /* Evita cortar um item de experiência/formação no meio entre duas páginas */
+  .cv-item,
+  .cv-secao {
+    break-inside: avoid;
+  }
+
+  /* Links não fazem sentido em papel impresso, mas se aparecerem, sem sublinhado azul feio */
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
