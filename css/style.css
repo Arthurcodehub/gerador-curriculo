@@ -381,11 +381,17 @@ html, body {
 }
 
 /* Textos longos sem espaço (email, links, tags) quebram em vez de esticar */
-.cv-contatos,
 .cv-tag,
 .cv-item-periodo {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+/* Linha de contatos usa "anywhere": quebra em qualquer ponto se precisar,
+   mais forte que break-word — necessário porque o usuário digita cidades
+   com hífen (ex: "Lages-Santa Catarina") que break-word não quebra bem */
+.cv-contatos {
+  overflow-wrap: anywhere;
 }
 
 /* Em telas pequenas, empilha em uma coluna só */
@@ -393,5 +399,9 @@ html, body {
   .main-layout {
     grid-template-columns: 1fr;
     padding: var(--espaco-md);
+  }
+
+  .curriculo-preview {
+    padding: var(--espaco-md); /* reduz de 3rem pra 1.5rem, sobra mais espaço pro texto */
   }
 }
