@@ -55,6 +55,7 @@ E acesse http://localhost:8000 no navegador.
 
 ## Estrutura do projeto
 
+<!-- TREE_START -->
 ```
 .
 ├── assets
@@ -80,8 +81,12 @@ E acesse http://localhost:8000 no navegador.
 │   └── storage.js
 ├── LICENSE
 ├── README.md
-└── index.html
+├── index.html
+└── update-tree.sh
+
+6 directories, 20 files
 ```
+<!-- TREE_END -->
 
 ## Decisões técnicas
 
