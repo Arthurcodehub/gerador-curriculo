@@ -341,12 +341,6 @@ legend {
   color: var(--cor-texto-principal);
 }
 
-@media (max-width: 900px) {
-  .preview-section {
-    position: static;
-  }
-}
-
 /* Foco visível e consistente em QUALQUER elemento focável,
    usando :focus-visible (só aparece na navegação por teclado,
    não em cliques de mouse — não fica "sujo" visualmente) */
@@ -394,14 +388,22 @@ html, body {
   overflow-wrap: anywhere;
 }
 
-/* Em telas pequenas, empilha em uma coluna só */
+/* Em telas pequenas, empilha em uma coluna só e ajusta o preview */
 @media (max-width: 900px) {
   .main-layout {
     grid-template-columns: 1fr;
     padding: var(--espaco-md);
   }
 
+  .preview-section {
+    position: static;
+  }
+
   .curriculo-preview {
     padding: var(--espaco-md); /* reduz de 3rem pra 1.5rem, sobra mais espaço pro texto */
+    aspect-ratio: unset; /* remove a trava de proporção A4, senão a largura cresce junto com a altura */
+    width: 100%;
+    height: auto;
+    min-height: auto;
   }
 }
