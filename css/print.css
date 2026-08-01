@@ -16,20 +16,20 @@
     border-radius: 0;
     padding: 0;
     aspect-ratio: unset;
-    overflow: visible; /* garante que conteúdo longo não corte na impressão */
+    min-height: 0; /* impede que a altura mínima da tela empurre conteúdo pra segunda página */
+    height: auto;
+    overflow: visible;
   }
 
   body {
     background: white;
   }
 
-  /* Evita cortar um item de experiência/formação no meio entre duas páginas */
   .cv-item,
   .cv-secao {
     break-inside: avoid;
   }
 
-  /* Links não fazem sentido em papel impresso, mas se aparecerem, sem sublinhado azul feio */
   a {
     color: inherit;
     text-decoration: none;
