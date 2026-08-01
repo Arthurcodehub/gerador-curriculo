@@ -8,6 +8,15 @@ Aplicação web para criar currículos profissionais com pré-visualização em 
 
 🔗 [Acesse o projeto online](https://arthurcodehub.github.io/gerador-curriculo/)
 
+
+
+![Preview desktop](assets/screenshots/desktop.png)
+
+
+
+
+![Preview mobile](assets/screenshots/mobile.png)
+
 ## Funcionalidades
 
 - Formulário organizado em seções: dados pessoais, experiência, formação e habilidades
