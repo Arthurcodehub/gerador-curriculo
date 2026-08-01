@@ -56,18 +56,23 @@ E acesse http://localhost:8000 no navegador.
 ## Estrutura do projeto
 
 ```
-gerador-curriculo/
-- index.html
-- css/
-  - reset.css      normalizacao entre navegadores
-  - style.css      estilos principais e componentes
-  - print.css      regras especificas para exportacao em PDF
-- js/
-  - storage.js     persistencia de dados (localStorage)
-  - form.js        captura e validacao do formulario
-  - preview.js     renderizacao do curriculo em tempo real
-  - app.js         orquestrador principal
-- README.md
+.
+├── assets
+│   └── screenshots
+│       ├── desktop.png
+│       └── mobile.png
+├── css
+│   ├── print.css
+│   ├── reset.css
+│   └── style.css
+├── js
+│   ├── app.js
+│   ├── form.js
+│   ├── preview.js
+│   └── storage.js
+├── LICENSE
+├── README.md
+└── index.html
 ```
 
 ## Decisões técnicas
