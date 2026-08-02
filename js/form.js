@@ -239,7 +239,8 @@ function validarCampo(input) {
   const mensagemExistente = campoContainer.querySelector('.mensagem-erro');
 
   const vazio = input.hasAttribute('required') && valor === '';
-  const emailInvalido = input.type === 'email' && valor !== '' && !valor.includes('@');
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailInvalido = input.type === 'email' && valor !== '' && !regexEmail.test(valor);
 
   if (vazio || emailInvalido) {
     input.classList.add('erro');
