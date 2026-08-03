@@ -28,6 +28,17 @@ Aplicação web para criar currículos profissionais com pré-visualização em 
 - Interface responsiva, adaptada para desktop e mobile
 - Navegação por teclado e suporte a leitores de tela (skip link, aria-live, aria-invalid)
 
+## Qualidade e Performance
+
+Auditado com [Google PageSpeed Insights](https://pagespeed.web.dev/):
+
+| Categoria | Nota |
+|---|---|
+| Performance | 93/100 |
+| Accessibility | 100/100 |
+| Best Practices | 100/100 |
+| SEO | 100/100 |
+
 ## Tecnologias
 
 - HTML5 semântico
