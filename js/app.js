@@ -48,5 +48,6 @@ btnExportarPDF.addEventListener('click', () => {
     return;
   }
 
-  window.print();
+  const dados = coletarDadosFormulario();
+  gerarPDFTextoReal(dados);
 });

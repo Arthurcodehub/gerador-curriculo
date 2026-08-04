@@ -88,6 +88,7 @@ E acesse http://localhost:8000 no navegador.
 ├── js
 │   ├── app.js
 │   ├── form.js
+│   ├── pdf.js
 │   ├── preview.js
 │   └── storage.js
 ├── LICENSE
@@ -95,7 +96,7 @@ E acesse http://localhost:8000 no navegador.
 ├── index.html
 └── update-tree.sh
 
-6 directories, 20 files
+6 directories, 21 files
 ```
 <!-- TREE_END -->
 
