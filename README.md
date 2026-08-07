@@ -76,8 +76,7 @@ E acesse http://localhost:8000 no navegador.
 │   │   ├── apple-touch-icon.png
 │   │   ├── favicon-16x16.png
 │   │   ├── favicon-32x32.png
-│   │   ├── favicon.ico
-│   │   └── site.webmanifest
+│   │   └── favicon.ico
 │   └── screenshots
 │       ├── desktop.png
 │       └── mobile.png
@@ -96,7 +95,7 @@ E acesse http://localhost:8000 no navegador.
 ├── index.html
 └── update-tree.sh
 
-6 directories, 21 files
+6 directories, 20 files
 ```
 <!-- TREE_END -->
 
