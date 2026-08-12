@@ -21,12 +21,15 @@ document.addEventListener('dadosAtualizados', (evento) => {
 // 3. Botão "Limpar dados"
 const btnLimpar = document.getElementById('btn-limpar');
 
-btnLimpar.addEventListener('click', () => {
-  const confirmar = confirm('Tem certeza que deseja apagar todos os dados preenchidos?');
+btnLimpar.addEventListener('click', async () => {
+  const confirmar = await confirmarModal(
+    'Limpar todos os dados?',
+    'Essa ação vai apagar tudo que você preencheu. Não é possível desfazer.'
+  );
   if (!confirmar) return;
 
   limparDadosSalvos();
-  form.reset(); // método nativo do HTML que limpa todos os inputs
+  form.reset();
   listaExperiencias.innerHTML = '';
   listaFormacao.innerHTML = '';
   contadorExperiencia = 0;
@@ -39,11 +42,11 @@ btnLimpar.addEventListener('click', () => {
 // Botão "Exportar PDF"
 const btnExportarPDF = document.getElementById('btn-exportar-pdf');
 
-btnExportarPDF.addEventListener('click', () => {
+btnExportarPDF.addEventListener('click', async () => {
   const camposValidos = Array.from(camposObrigatorios).every((input) => validarCampo(input));
 
   if (!camposValidos) {
-    alert('Preencha os campos obrigatórios antes de exportar.');
+    await alertaModal('Campos obrigatórios', 'Preencha os campos obrigatórios antes de exportar.');
     camposObrigatorios[0].focus();
     return;
   }

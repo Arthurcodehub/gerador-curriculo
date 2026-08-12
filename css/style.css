@@ -407,3 +407,64 @@ html, body {
     min-height: auto;
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--espaco-md);
+  animation: fadeIn 200ms ease;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-caixa {
+  background: var(--cor-card);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-hover);
+  padding: var(--espaco-lg);
+  max-width: 400px;
+  width: 100%;
+  animation: slideUp 200ms ease;
+}
+
+.modal-titulo {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--cor-texto-principal);
+  margin-bottom: var(--espaco-xs);
+}
+
+.modal-mensagem {
+  font-size: 0.9rem;
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--espaco-md);
+  line-height: 1.5;
+}
+
+.modal-acoes {
+  display: flex;
+  gap: var(--espaco-sm);
+  justify-content: flex-end;
+}
+
+/* Modo "alerta" (só um botão, sem opção de cancelar) */
+.modal-caixa.modal-somente-ok .modal-acoes #modal-btn-cancelar {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
