@@ -25,14 +25,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="assets/icons/site.webmanifest">
-  <!-- Open Graph: controla como o link aparece no WhatsApp, LinkedIn, Facebook -->
   <meta property="og:title" content="Gerador de Currículo">
   <meta property="og:description" content="Crie seu currículo com pré-visualização em tempo real e exportação em PDF.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://arthurcodehub.github.io/gerador-curriculo/">
   <meta property="og:image" content="https://arthurcodehub.github.io/gerador-curriculo/assets/screenshots/desktop.png">
-
-<!-- Twitter/X usa suas próprias tags, similares às Open Graph -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gerador de Currículo">
   <meta name="twitter:description" content="Crie seu currículo com pré-visualização em tempo real e exportação em PDF.">
@@ -145,6 +142,7 @@
   <footer class="footer">
     <p>Feito com HTML, CSS e JavaScript puro.</p>
   </footer>
+   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <div id="modal-overlay" class="modal-overlay" hidden>
   <div class="modal-caixa" role="alertdialog" aria-modal="true" aria-labelledby="modal-titulo" aria-describedby="modal-mensagem">
     <p id="modal-titulo" class="modal-titulo"></p>

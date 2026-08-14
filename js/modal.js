@@ -40,9 +40,6 @@ function confirmarModal(titulo, mensagem) {
   });
 }
 
-/**
- * Abre o modal em modo "aviso" (um botão só, tipo alert()).
- */
 function alertaModal(titulo, mensagem) {
   return new Promise((resolve) => {
     abrirModal(titulo, mensagem, true);
@@ -82,4 +79,36 @@ function aoPressionarEsc(evento) {
   if (evento.key === 'Escape') {
     modalBtnCancelar.click();
   }
+}
+
+// --- TOAST ---
+
+const toastElemento = document.getElementById('toast');
+let toastTimeoutId = null;
+let toastSaidaTimeoutId = null;
+
+function mostrarToast(mensagem, duracaoMs = 3000) {
+  if (toastTimeoutId) {
+    clearTimeout(toastTimeoutId);
+    toastTimeoutId = null;
+  }
+
+  if (toastSaidaTimeoutId) {
+    clearTimeout(toastSaidaTimeoutId);
+    toastSaidaTimeoutId = null;
+  }
+
+  toastElemento.textContent = mensagem;
+  toastElemento.hidden = false;
+  toastElemento.classList.remove('toast-saindo');
+
+  toastTimeoutId = setTimeout(() => {
+    toastTimeoutId = null;
+    toastElemento.classList.add('toast-saindo');
+
+    toastSaidaTimeoutId = setTimeout(() => {
+      toastSaidaTimeoutId = null;
+      toastElemento.hidden = true;
+    }, 250);
+  }, duracaoMs);
 }

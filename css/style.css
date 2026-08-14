@@ -151,6 +151,7 @@ legend {
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
+  margin-top: 10px;
   transition: transform 150ms ease, background-color var(--transicao), box-shadow var(--transicao);
 }
 
@@ -381,9 +382,6 @@ html, body {
   word-break: break-word;
 }
 
-/* Linha de contatos usa "anywhere": quebra em qualquer ponto se precisar,
-   mais forte que break-word — necessário porque o usuário digita cidades
-   com hífen (ex: "Lages-Santa Catarina") que break-word não quebra bem */
 .cv-contatos {
   overflow-wrap: anywhere;
 }
@@ -467,4 +465,41 @@ html, body {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.toast {
+  position: fixed;
+  bottom: var(--espaco-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cor-texto-principal);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: var(--sombra-hover);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastEntrada 250ms ease;
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+.toast.toast-saindo {
+  animation: toastSaida 250ms ease forwards;
+}
+
+@keyframes toastEntrada {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes toastSaida {
+  from { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to { opacity: 0; transform: translateX(-50%) translateY(10px); }
 }

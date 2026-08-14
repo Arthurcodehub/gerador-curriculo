@@ -39,7 +39,7 @@ btnLimpar.addEventListener('click', async () => {
   disparaAtualizacao();
 });
 
-// Botão "Exportar PDF"
+// 4. Botão "Exportar PDF"
 const btnExportarPDF = document.getElementById('btn-exportar-pdf');
 
 btnExportarPDF.addEventListener('click', async () => {
@@ -53,4 +53,5 @@ btnExportarPDF.addEventListener('click', async () => {
 
   const dados = coletarDadosFormulario();
   gerarPDFTextoReal(dados);
+  mostrarToast('PDF exportado com sucesso ✓');
 });
