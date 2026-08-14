@@ -1,38 +1,60 @@
-// storage.js — responsável por salvar e recuperar dados do localStorage
+//storage.js
 
 const CHAVE_STORAGE = 'curriculo-dados';
 
 /**
  * Salva o objeto de dados no localStorage.
- * Precisa converter pra texto (JSON.stringify) porque localStorage
- * só aceita strings.
+ *
+ * Retorna true quando a persistência foi concluída e false quando
+ * o navegador não permitiu a operação.
  */
 function salvarDados(dados) {
-  const texto = JSON.stringify(dados);
-  localStorage.setItem(CHAVE_STORAGE, texto);
+  try {
+    const texto = JSON.stringify(dados);
+    localStorage.setItem(CHAVE_STORAGE, texto);
+    return true;
+  } catch (erro) {
+    console.warn('Não foi possível salvar os dados localmente.', erro);
+    return false;
+  }
 }
 
-/**
- * Recupera os dados salvos, já convertidos de volta pra objeto.
- * Se não existir nada salvo, ou se o conteúdo estiver corrompido
- * (adulterado manualmente, por exemplo), devolve null com segurança.
- */
 function carregarDados() {
-  const texto = localStorage.getItem(CHAVE_STORAGE);
-  if (!texto) return null;
-
   try {
-    return JSON.parse(texto);
+    const texto = localStorage.getItem(CHAVE_STORAGE);
+if (!texto) return null;
+
+    try {
+      return JSON.parse(texto);
+    } catch (erro) {
+      console.warn('Dados salvos corrompidos. Ignorando o conteúdo.', erro);
+
+      try {
+        localStorage.removeItem(CHAVE_STORAGE);
+      } catch (erroRemocao) {
+        console.warn('Não foi possível remover os dados corrompidos.', erroRemocao);
+      }
+      
+      return null;
+    }
   } catch (erro) {
-    console.error('Dados salvos corrompidos, ignorando e limpando:', erro);
-    localStorage.removeItem(CHAVE_STORAGE);
+    console.warn('Não foi possível acessar os dados locais.', erro);
     return null;
   }
 }
 
 /**
  * Apaga os dados salvos.
+ *
+ * Retorna true quando a remoção foi concluída e false quando
+ * o navegador não permitiu a operação.
  */
 function limparDadosSalvos() {
-  localStorage.removeItem(CHAVE_STORAGE);
+  try {
+    localStorage.removeItem(CHAVE_STORAGE);
+    return true;
+  } catch (erro) {
+    console.warn('Não foi possível remover os dados locais.', erro);
+    return false;
+  }
 }
