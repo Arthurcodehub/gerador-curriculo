@@ -2,15 +2,106 @@
 
 const CHAVE_STORAGE = 'curriculo-dados';
 
-/**
- * Salva o objeto de dados no localStorage.
- *
- * Retorna true quando a persistência foi concluída e false quando
- * o navegador não permitiu a operação.
- */
+const LIMITE_EXPERIENCIAS = 50;
+const LIMITE_FORMACAO = 50;
+const LIMITE_HABILIDADES = 50;
+
+const CAMPOS_PESSOAIS = [
+  'nome',
+  'cargo',
+  'email',
+  'telefone',
+  'cidade',
+  'resumo',
+];
+
+const CAMPOS_EXPERIENCIA = [
+  'empresa',
+  'cargo',
+  'periodo',
+  'descricao',
+];
+
+const CAMPOS_FORMACAO = [
+  'instituicao',
+  'curso',
+  'periodo',
+];
+
+function ehObjeto(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizarString(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function normalizarObjeto(value, campos) {
+  if (!ehObjeto(value)) return null;
+
+  const resultado = {};
+
+  campos.forEach((campo) => {
+    resultado[campo] = normalizarString(value[campo]);
+  });
+
+  return resultado;
+}
+
+function normalizarItens(value, limite, campos) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .slice(0, limite)
+    .map((item) => normalizarObjeto(item, campos))
+    .filter(Boolean);
+}
+
+function normalizarHabilidades(value) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .slice(0, LIMITE_HABILIDADES)
+    .map(normalizarString)
+    .filter((habilidade) => habilidade.length > 0);
+}
+
+function normalizarDados(value) {
+  if (!ehObjeto(value)) return null;
+
+  const dados = {};
+
+  CAMPOS_PESSOAIS.forEach((campo) => {
+    dados[campo] = normalizarString(value[campo]);
+  });
+
+  dados.experiencias = normalizarItens(
+    value.experiencias,
+    LIMITE_EXPERIENCIAS,
+    CAMPOS_EXPERIENCIA,
+  );
+
+  dados.formacao = normalizarItens(
+    value.formacao,
+    LIMITE_FORMACAO,
+    CAMPOS_FORMACAO,
+  );
+
+  dados.habilidades = normalizarHabilidades(value.habilidades);
+
+  return dados;
+}
+
 function salvarDados(dados) {
   try {
-    const texto = JSON.stringify(dados);
+    const dadosNormalizados = normalizarDados(dados);
+
+    if (!dadosNormalizados) {
+      console.warn('Dados inválidos. A persistência foi ignorada.');
+      return false;
+    }
+
+    const texto = JSON.stringify(dadosNormalizados);
     localStorage.setItem(CHAVE_STORAGE, texto);
     return true;
   } catch (erro) {
@@ -22,33 +113,32 @@ function salvarDados(dados) {
 function carregarDados() {
   try {
     const texto = localStorage.getItem(CHAVE_STORAGE);
-if (!texto) return null;
+
+    if (!texto) return null;
+
+    let dados;
 
     try {
-      return JSON.parse(texto);
+      dados = JSON.parse(texto);
     } catch (erro) {
       console.warn('Dados salvos corrompidos. Ignorando o conteúdo.', erro);
-
-      try {
-        localStorage.removeItem(CHAVE_STORAGE);
-      } catch (erroRemocao) {
-        console.warn('Não foi possível remover os dados corrompidos.', erroRemocao);
-      }
-      
       return null;
     }
+
+    const dadosNormalizados = normalizarDados(dados);
+
+    if (!dadosNormalizados) {
+      console.warn('Dados salvos possuem estrutura inválida. Ignorando o conteúdo.');
+      return null;
+    }
+
+    return dadosNormalizados;
   } catch (erro) {
     console.warn('Não foi possível acessar os dados locais.', erro);
     return null;
   }
 }
 
-/**
- * Apaga os dados salvos.
- *
- * Retorna true quando a remoção foi concluída e false quando
- * o navegador não permitiu a operação.
- */
 function limparDadosSalvos() {
   try {
     localStorage.removeItem(CHAVE_STORAGE);
