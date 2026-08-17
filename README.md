@@ -107,9 +107,10 @@ E acesse http://localhost:8000 no navegador.
 ├── LICENSE
 ├── README.md
 ├── index.html
+├── jsconfig.json
 └── update-tree.sh
 
-6 directories, 21 files
+6 directories, 22 files
 ```
 <!-- TREE_END -->
 

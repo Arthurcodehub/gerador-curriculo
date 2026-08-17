@@ -219,3 +219,9 @@ function limparDadosSalvos() {
     return false;
   }
 }
+
+Object.assign(globalThis, {
+  salvarDados,
+  carregarDados,
+  limparDadosSalvos,
+});
