@@ -1,10 +1,38 @@
-//storage.js
+// storage.js
 
 const CHAVE_STORAGE = 'curriculo-dados';
 
 const LIMITE_EXPERIENCIAS = 50;
 const LIMITE_FORMACAO = 50;
 const LIMITE_HABILIDADES = 50;
+
+/**
+ * @typedef {Object} Experiencia
+ * @property {string} empresa
+ * @property {string} cargo
+ * @property {string} periodo
+ * @property {string} descricao
+ */
+
+/**
+ * @typedef {Object} Formacao
+ * @property {string} instituicao
+ * @property {string} curso
+ * @property {string} periodo
+ */
+
+/**
+ * @typedef {Object} DadosCurriculo
+ * @property {string} nome
+ * @property {string} cargo
+ * @property {string} email
+ * @property {string} telefone
+ * @property {string} cidade
+ * @property {string} resumo
+ * @property {Experiencia[]} experiencias
+ * @property {Formacao[]} formacao
+ * @property {string[]} habilidades
+ */
 
 const CAMPOS_PESSOAIS = [
   'nome',
@@ -28,14 +56,30 @@ const CAMPOS_FORMACAO = [
   'periodo',
 ];
 
+/**
+ * @param {unknown} value
+ * @returns {value is Record<string, unknown>}
+ */
 function ehObjeto(value) {
-  return value !== null && typeof value === 'object' && !Array.isArray(value);
+  return value !== null
+    && typeof value === 'object'
+    && !Array.isArray(value);
 }
 
+/**
+ * @param {unknown} value
+ * @returns {string}
+ */
 function normalizarString(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+/**
+ * @template {Record<string, string>} T
+ * @param {unknown} value
+ * @param {string[]} campos
+ * @returns {T|null}
+ */
 function normalizarObjeto(value, campos) {
   if (!ehObjeto(value)) return null;
 
@@ -45,18 +89,29 @@ function normalizarObjeto(value, campos) {
     resultado[campo] = normalizarString(value[campo]);
   });
 
-  return resultado;
+  return /** @type {T} */ (resultado);
 }
 
+/**
+ * @template {Record<string, string>} T
+ * @param {unknown} value
+ * @param {number} limite
+ * @param {string[]} campos
+ * @returns {T[]}
+ */
 function normalizarItens(value, limite, campos) {
   if (!Array.isArray(value)) return [];
 
   return value
     .slice(0, limite)
     .map((item) => normalizarObjeto(item, campos))
-    .filter(Boolean);
+    .filter((item) => item !== null);
 }
 
+/**
+ * @param {unknown} value
+ * @returns {string[]}
+ */
 function normalizarHabilidades(value) {
   if (!Array.isArray(value)) return [];
 
@@ -66,6 +121,10 @@ function normalizarHabilidades(value) {
     .filter((habilidade) => habilidade.length > 0);
 }
 
+/**
+ * @param {unknown} value
+ * @returns {DadosCurriculo|null}
+ */
 function normalizarDados(value) {
   if (!ehObjeto(value)) return null;
 
@@ -89,9 +148,13 @@ function normalizarDados(value) {
 
   dados.habilidades = normalizarHabilidades(value.habilidades);
 
-  return dados;
+  return /** @type {DadosCurriculo} */ (dados);
 }
 
+/**
+ * @param {unknown} dados
+ * @returns {boolean}
+ */
 function salvarDados(dados) {
   try {
     const dadosNormalizados = normalizarDados(dados);
@@ -110,6 +173,9 @@ function salvarDados(dados) {
   }
 }
 
+/**
+ * @returns {DadosCurriculo|null}
+ */
 function carregarDados() {
   try {
     const texto = localStorage.getItem(CHAVE_STORAGE);
@@ -128,7 +194,9 @@ function carregarDados() {
     const dadosNormalizados = normalizarDados(dados);
 
     if (!dadosNormalizados) {
-      console.warn('Dados salvos possuem estrutura inválida. Ignorando o conteúdo.');
+      console.warn(
+        'Dados salvos possuem estrutura inválida. Ignorando o conteúdo.',
+      );
       return null;
     }
 
@@ -139,6 +207,9 @@ function carregarDados() {
   }
 }
 
+/**
+ * @returns {boolean}
+ */
 function limparDadosSalvos() {
   try {
     localStorage.removeItem(CHAVE_STORAGE);
