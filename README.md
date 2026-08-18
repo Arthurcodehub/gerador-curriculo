@@ -103,14 +103,15 @@ E acesse http://localhost:8000 no navegador.
 │   ├── modal.js
 │   ├── pdf.js
 │   ├── preview.js
-│   └── storage.js
+│   ├── storage.js
+│   └── type.js
 ├── LICENSE
 ├── README.md
 ├── index.html
 ├── jsconfig.json
 └── update-tree.sh
 
-6 directories, 22 files
+6 directories, 23 files
 ```
 <!-- TREE_END -->
 

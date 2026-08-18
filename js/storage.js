@@ -6,34 +6,6 @@ const LIMITE_EXPERIENCIAS = 50;
 const LIMITE_FORMACAO = 50;
 const LIMITE_HABILIDADES = 50;
 
-/**
- * @typedef {Object} Experiencia
- * @property {string} empresa
- * @property {string} cargo
- * @property {string} periodo
- * @property {string} descricao
- */
-
-/**
- * @typedef {Object} Formacao
- * @property {string} instituicao
- * @property {string} curso
- * @property {string} periodo
- */
-
-/**
- * @typedef {Object} DadosCurriculo
- * @property {string} nome
- * @property {string} cargo
- * @property {string} email
- * @property {string} telefone
- * @property {string} cidade
- * @property {string} resumo
- * @property {Experiencia[]} experiencias
- * @property {Formacao[]} formacao
- * @property {string[]} habilidades
- */
-
 const CAMPOS_PESSOAIS = [
   'nome',
   'cargo',
