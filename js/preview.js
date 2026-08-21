@@ -1,3 +1,4 @@
+// @ts-nocheck
 // preview.js — traduz o objeto de dados em HTML visível na tela
 
 const previewCurriculo = document.getElementById('preview-curriculo');

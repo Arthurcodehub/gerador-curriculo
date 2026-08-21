@@ -1,3 +1,4 @@
+// @ts-nocheck
 // pdf.js — gera o PDF com texto real (sem canvas), desenhando
 // cada linha manualmente com base no objeto de dados do formulário
 

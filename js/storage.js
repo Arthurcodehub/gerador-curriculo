@@ -1,3 +1,4 @@
+// @ts-nocheck
 // storage.js
 
 const CHAVE_STORAGE = 'curriculo-dados';

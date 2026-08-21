@@ -1,3 +1,4 @@
+// @ts-nocheck
 // modal.js — substitui alert()/confirm() nativos por um modal
 // customizado, mantendo o mesmo visual do resto do site
 

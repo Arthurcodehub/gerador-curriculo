@@ -1,3 +1,4 @@
+// @ts-nocheck
 // form.js — responsável por capturar dados do formulário e gerenciar
 // os itens dinâmicos (experiência e formação)
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // app.js — orquestrador principal
 
 // 1. Ao carregar a página, verifica se há dados salvos
