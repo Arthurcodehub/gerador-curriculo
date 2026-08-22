@@ -52,25 +52,16 @@ btnExportarPDF.addEventListener('click', async () => {
     return;
   }
 
-  const dados = coletarDadosFormulario();
-
-  try {
-    if (!window.jspdf?.jsPDF) {
-      await alertaModal(
-        'Exportação indisponível',
-        'A biblioteca de PDF não foi carregada. Verifique sua conexão e tente novamente.'
-      );
-      return;
-    }
-
-    gerarPDFTextoReal(dados);
-    mostarToast('PDF exportado com sucesso ✓');
-  } catch (erro) {
-    console.error('Erro ao gerar PDF:', erro);
-
-    await alertaModal(
-      'Erro ao exportar',
-      'Não foi possível gerar o PDF. Tente novamente.'
-    );
+  // Verifica se jsPDF carregou corretamente
+  if (typeof jsPDF === 'undefined') {
+    await alertaModal('Erro', 'Biblioteca de PDF não carregou. Tente recarregar a página.');
+    return;
   }
-}); 
+
+  const dados = coletarDadosFormulario();
+  gerarPDFTextoReal(dados);
+  mostrarToast('PDF exportado com sucesso ✓');
+});;
+
+
+  
