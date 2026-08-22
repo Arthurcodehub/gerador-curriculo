@@ -143,9 +143,10 @@ function coletarDadosFormulario() {
     experiencias: coletarItensDinamicos(listaExperiencias),
     formacao: coletarItensDinamicos(listaFormacao),
     habilidades: document.getElementById('habilidades').value
-      .split(',')
-      .map((h) => h.trim())
-      .filter((h) => h.length > 0), // remove strings vazias (ex: vírgula sobrando)
+  .trim()
+  .split(',')
+  .map(h => h.trim())
+  .filter(h => h.length > 0),
   };
 }
 
